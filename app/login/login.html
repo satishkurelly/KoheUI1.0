@@ -1,0 +1,21 @@
+﻿<div class="col-md-6 col-md-offset-3">
+    <img src = http://d26uhratvi024l.cloudfront.net/gsc/G8803E/a8/00/1d/a8001dc57d434e2a8ef1c9ce58e1eb60/images/login/u27.png?token=29488f7afda807b798418138e9fee5a3>
+    <h2>Time Sheet Portal</h2>
+    <form name="form" ng-submit="vm.login()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="form-control" ng-model="vm.username" required />
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" ng-model="vm.password" required />
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
+
+            <a href="../resetpassword/resetpassword.html" class="btn btn-link">Reset Password</a>
+        </div>
+    </form>
+</div>
