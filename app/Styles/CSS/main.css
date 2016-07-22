@@ -1,0 +1,25 @@
+body{                    padding:40px 40px 40px 40px;
+}
+
+.logo{
+
+    margin-left: 440px;
+}
+
+h3
+{
+    text-align: center;
+    color:#AFAFAF;
+    font-size: 20px;
+
+}
+.orderedlist{
+    border-style:solid;
+    border-radius: 10px;
+    background-color: #FCF8E3;
+    border-color:#F6F2DD;
+}
+.padding{
+    padding-left: 20px;
+    padding-right: 20px;
+}
