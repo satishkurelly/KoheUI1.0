@@ -5,25 +5,25 @@
 describe('my app', function() {
 
 
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/login.html");
-  });
+ // it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
+   // browser.get('index.html');
+    //expect(browser.getLocationAbsUrl()).toMatch("/login.html");
+  //});
 
 
-  describe('view1', function() {
+  //describe('view1', function() {
 
-    beforeEach(function() {
-      browser.get('index.html#!/login');
-    });
+    //beforeEach(function() {
+     // browser.get('index.html#!/login');
+    //});
 
 
-    it('should render login when user navigates to /login', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for login view/);
-    });
+    //it('should render login when user navigates to /login', function() {
+      //expect(element.all(by.css('[ng-view] p')).first().getText()).
+        //toMatch(/partial for login view/);
+    //});
 
-  });
+  //});
 
-  
+
 });
