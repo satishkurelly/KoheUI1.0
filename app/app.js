@@ -2,31 +2,33 @@
   'use strict';
 
   angular
-      .module('app', ['ngRoute', 'ngCookies'])
+      .module('app', [
+        'ngRoute', 
+        'ngCookies'])
       .config(config)
       .run(run);
 
   config.$inject = ['$routeProvider', '$locationProvider'];
   function config($routeProvider, $locationProvider) {
     $routeProvider
+
         .when('/', {
-          controller: 'ResetpasswordController',
-          templateUrl: 'resetpassword/resetpassword.html',
-          controllerAs: 'vm'
-        })
-
-        .when('/login', {
           controller: 'LoginController',
-          templateUrl: 'login/login.html',
-          controllerAs: 'vm'
+          templateUrl: 'login/login.html'
+
         })
 
-        .when('/admin', {
-          controller: 'CreateuserController',
-          templateUrl: 'admin/createuser.html',
-          controllerAs: 'vm'
+        .when('/mainPage',{
+            controller: 'MainController',
+            templateUrl: 'Dashboard/main.html'
+
         })
 
+        .when('/resetPassword', {
+          controller: 'ResetPasswordController',
+          templateUrl: 'resetPassword/resetPassword.html'
+
+        })
         .otherwise({ redirectTo: '/login' });
   }
 
@@ -42,9 +44,7 @@
       // redirect to login page if not logged in and trying to access a restricted page
       var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
       var loggedIn = $rootScope.globals.currentUser;
-      if (restrictedPage && !loggedIn) {
-        $location.path('/login');
-      }
+      
     });
   }
 
