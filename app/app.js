@@ -1,51 +1,69 @@
-(function () {
-  'use strict';
+var app = angular.module('portal', ['ngRoute']);
 
-  angular
-      .module('app', [
-        'ngRoute', 
-        'ngCookies'])
-      .config(config)
-      .run(run);
-
-  config.$inject = ['$routeProvider', '$locationProvider'];
-  function config($routeProvider, $locationProvider) {
-    $routeProvider
-
-        .when('/', {
-          controller: 'LoginController',
-          templateUrl: 'login/login.html'
-
-        })
-
-        .when('/mainPage',{
-            controller: 'MainController',
-            templateUrl: 'Dashboard/main.html'
-
-        })
-
-        .when('/resetPassword', {
-          controller: 'ResetPasswordController',
-          templateUrl: 'resetPassword/resetPassword.html'
-
-        })
-        .otherwise({ redirectTo: '/login' });
-  }
-
-  run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
-  function run($rootScope, $location, $cookieStore, $http) {
-    // keep user logged in after page refresh
-    $rootScope.globals = $cookieStore.get('globals') || {};
-    if ($rootScope.globals.currentUser) {
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-    }
-
-    $rootScope.$on('$locationChangeStart', function (event, next, current) {
-      // redirect to login page if not logged in and trying to access a restricted page
-      var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
-      var loggedIn = $rootScope.globals.currentUser;
-      
+app.config(function($routeProvider) {
+    $routeProvider.when('/login', {
+        templateUrl: 'login/login.html',
+        controller: 'LoginCtrl'
     });
-  }
+    $routeProvider.when('/', {
+        templateUrl: 'Dashboard/main.html',
+        controller: 'MainCtrl'
+    });
+    $routeProvider.otherwise({ redirectTo: '/' });
+});
+app.run(function(authentication, $rootScope, $location) {
+    $rootScope.$on('$routeChangeStart', function(evt) {
+        if(!authentication.isAuthenticated){
+            $location.url("/login");
+        }
+        event.preventDefault();
+    });
+})
 
-})();
+app.controller('LoginCtrl', function($scope, $http, $location, authentication) {
+    $scope.login = function() {
+
+        if ($scope.username === 'test' && $scope.password === '1234') {
+            console.log('successful')
+            authentication.isAuthenticated = true;
+            authentication.user = { name: $scope.username };
+            $location.url("/");
+        } else {
+            $scope.loginError = "Invalid username/password combination";
+            console.log('Login failed..');
+        };
+    };
+});
+
+app.controller('AppCtrl', function($scope, $httpBackend, $http, authentication) {
+    $scope.templates =
+        [
+            { url: 'login.html' },
+            { url: 'home.html' }
+        ];
+    $scope.template = $scope.templates[0];
+    $scope.login = function (username, password) {
+        if ( username === 'admin' && password === '1234') {
+
+
+            authentication.isAuthenticated = true;
+            $scope.template = $scope.templates[1];
+            $scope.user = username;
+        } else {
+            $scope.loginError = "Invalid username/password combination";
+        };
+    };
+
+});
+
+app.controller('MainCtrl', function($scope, authentication) {
+    $scope.user = authentication.user.name;
+
+});
+
+app.factory('authentication', function() {
+    return {
+        isAuthenticated: false,
+        user: null
+    }
+});
