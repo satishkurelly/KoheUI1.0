@@ -17,10 +17,10 @@ app.config(function($routeProvider) {
 });
 app.run(function(authentication, $rootScope, $location) {
     $rootScope.$on('$routeChangeStart', function(evt) {
-        if(!authentication.isAuthenticated){
-            $location.url("/login");
-        }
-        event.preventDefault();
+       // if(!authentication.isAuthenticated){
+          //  $location.url("/login");
+       // }
+       // event.preventDefault();
     });
 })
 
