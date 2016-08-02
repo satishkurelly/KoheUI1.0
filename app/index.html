@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="portal">
 <head>
   <meta charset="utf-8" />
   <title>Kohe</title>
@@ -11,12 +11,11 @@
   <link rel="stylesheet" type="text/css" href="app.css">
 
 </head>
-<body>
+<body ng-controller="AppCtrl">
 
 
   <div class="container">
     <div class="col-sm-8 col-sm-offset-2">
-      <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
       <div ng-view></div>
     </div>
   </div>
