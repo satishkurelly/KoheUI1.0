@@ -5,11 +5,15 @@ app.config(function($routeProvider) {
         templateUrl: 'login/login.html',
         controller: 'LoginCtrl'
     });
-    $routeProvider.when('/', {
+    $routeProvider.when('/Dashboard', {
         templateUrl: 'Dashboard/main.html',
         controller: 'MainCtrl'
     });
-    $routeProvider.otherwise({ redirectTo: '/' });
+    $routeProvider.when('/resetPwd', {
+        templateUrl: 'resetpassword/resetpassword.html',
+       // controller: 'ResetController'
+    });
+    $routeProvider.otherwise({ redirectTo: '/login' });
 });
 app.run(function(authentication, $rootScope, $location) {
     $rootScope.$on('$routeChangeStart', function(evt) {
@@ -27,7 +31,7 @@ app.controller('LoginCtrl', function($scope, $http, $location, authentication) {
             console.log('successful')
             authentication.isAuthenticated = true;
             authentication.user = { name: $scope.username };
-            $location.url("/");
+            $location.url("/Dashboard");
         } else {
             $scope.loginError = "Invalid username/password combination";
             console.log('Login failed..');
