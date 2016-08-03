@@ -13,6 +13,14 @@ app.config(function($routeProvider) {
         templateUrl: 'resetpassword/resetpassword.html',
        // controller: 'ResetController'
     });
+    $routeProvider.when('/changePwd', {
+        templateUrl: 'Change_Password/changepassword.html',
+        // controller: 'ChangeController'
+    });
+    $routeProvider.when('/contactus', {
+        templateUrl: 'Contactus/contactus.html',
+        //controller: 'ContactCtrl'
+    });
     $routeProvider.otherwise({ redirectTo: '/login' });
 });
 app.run(function(authentication, $rootScope, $location) {
