@@ -27,8 +27,6 @@ app.run(function(authentication, $rootScope, $location) {
 app.controller('LoginCtrl', function($scope, $http, $location, authentication) {
     $scope.login = function() {
 
-        var loginResult;
-
         var username = $scope.username;
 
         $http({
@@ -45,8 +43,6 @@ app.controller('LoginCtrl', function($scope, $http, $location, authentication) {
         }, function errorCallback(response) {
 
         });
-
-        return loginResult;
 
         if ($scope.username === 'test' && $scope.password === '1234') {
 
@@ -84,7 +80,7 @@ app.controller('AppCtrl', function($scope, $httpBackend, $http, authentication) 
 });
 
 app.controller('MainCtrl', function($scope, authentication) {
-    $scope.user = authentication.user.name;
+    $scope.username = authentication.username;
 
 });
 
