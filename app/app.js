@@ -27,7 +27,29 @@ app.run(function(authentication, $rootScope, $location) {
 app.controller('LoginCtrl', function($scope, $http, $location, authentication) {
     $scope.login = function() {
 
+        var loginResult;
+
+        var username = $scope.username;
+
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8086/Project/Rest/timeportal/login?username=' +username
+        }).then(function successCallback(response) {
+            var Results = angular.fromJson(response.data)[0];
+
+            var username = Results.username;
+            var role = Results.role;
+
+            $location.url("/Dashboard");
+
+        }, function errorCallback(response) {
+
+        });
+
+        return loginResult;
+
         if ($scope.username === 'test' && $scope.password === '1234') {
+
             console.log('successful')
             authentication.isAuthenticated = true;
             authentication.user = { name: $scope.username };
@@ -45,6 +67,7 @@ app.controller('AppCtrl', function($scope, $httpBackend, $http, authentication) 
             { url: 'login.html' },
             { url: 'home.html' }
         ];
+
     $scope.template = $scope.templates[0];
     $scope.login = function (username, password) {
         if ( username === 'admin' && password === '1234') {
