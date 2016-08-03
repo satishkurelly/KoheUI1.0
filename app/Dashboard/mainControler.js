@@ -2,11 +2,11 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('portal')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['UserService', '$location', '$rootScope', 'FlashService'];
-    function MainController(UserService, $location, $rootScope, FlashService) {
+    MainController.$inject = ['$location', '$rootScope'];
+    function MainController($location, $rootScope) {
        
 
        
