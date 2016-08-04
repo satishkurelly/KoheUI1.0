@@ -35,25 +35,26 @@ app.controller('LoginCtrl', function($scope, $http, $location, authentication) {
         }).then(function successCallback(response) {
             var Results = angular.fromJson(response.data)[0];
 
-            var username = Results.username;
+            var userName = Results.username;
             var role = Results.role;
+            var passWord = Results.password;
 
-            $location.url("/Dashboard");
+            if ($scope.username === userName && $scope.password === passWord) {
+
+                console.log('successful')
+                authentication.isAuthenticated = true;
+                authentication.user = { name: $scope.username };
+                $location.url("/Dashboard");
+            } else {
+                $scope.loginError = "Invalid username/password combination";
+                console.log('Login failed..');
+            };
 
         }, function errorCallback(response) {
 
         });
 
-        if ($scope.username === 'test' && $scope.password === '1234') {
 
-            console.log('successful')
-            authentication.isAuthenticated = true;
-            authentication.user = { name: $scope.username };
-            $location.url("/Dashboard");
-        } else {
-            $scope.loginError = "Invalid username/password combination";
-            console.log('Login failed..');
-        };
     };
 });
 
