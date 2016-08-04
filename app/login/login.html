@@ -2,7 +2,7 @@
 <div class="row">
     <img src = "../Styles/Images/logo.png">
     <div class = "row">
-    <h2>Time Sheet Portal</h2>
+    <h2 class = "text-center">Time Sheet Portal</h2>
     </div>
 <form name="form" ng-submit="login(username,password)" role="form" class="ng-scope ng-pristine ng-valid">
     <div class="form-group">
@@ -15,10 +15,11 @@
         <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
         <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
     </div>
-    <br/>
+
     {{loginError}}  {{loggedUser}}
-    <br/>
+
     <div class="form-actions">
+        <br/>
         <button type="submit" ng-click="" class="btn btn-primary">Login</button>
         <a href="#resetPwd" class="btn btn-link">Forgot Password</a>
     </div>
