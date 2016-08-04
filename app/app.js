@@ -10,16 +10,8 @@ app.config(function($routeProvider) {
         controller: 'MainCtrl'
     });
     $routeProvider.when('/resetPwd', {
-        templateUrl: 'resetpassword/resetpassword.html',
+        templateUrl: 'Forgot_Password/forgotpassword.html',
        controller: 'ResetController'
-    });
-    $routeProvider.when('/changePwd', {
-        templateUrl: 'Change_Password/changepassword.html',
-        // controller: 'ChangeController'
-    });
-    $routeProvider.when('/contactus', {
-        templateUrl: 'Contactus/contactus.html',
-        //controller: 'ContactCtrl'
     });
     $routeProvider.otherwise({ redirectTo: '/login' });
 });
