@@ -11,7 +11,7 @@ app.config(function($routeProvider) {
     });
     $routeProvider.when('/resetPwd', {
         templateUrl: 'resetpassword/resetpassword.html',
-       // controller: 'ResetController'
+       controller: 'ResetController'
     });
     $routeProvider.when('/changePwd', {
         templateUrl: 'Change_Password/changepassword.html',
@@ -67,8 +67,8 @@ app.controller('LoginCtrl', function($scope, $http, $location, authentication) {
 });
 
 app.controller('AppCtrl', function($scope, $httpBackend, $http, authentication) {
-    $scope.templates =
-        [
+    /* $scope.templates =
+       [
             { url: 'login.html' },
             { url: 'home.html' }
         ];
@@ -78,13 +78,13 @@ app.controller('AppCtrl', function($scope, $httpBackend, $http, authentication) 
         if ( username === 'admin' && password === '1234') {
 
 
-            authentication.isAuthenticated = true;
-            $scope.template = $scope.templates[1];
-            $scope.user = username;
+           // authentication.isAuthenticated = true;
+           /// $scope.template = $scope.templates[1];
+           // $scope.user = username;
         } else {
             $scope.loginError = "Invalid username/password combination";
         };
-    };
+    };*/
 
 });
 

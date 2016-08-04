@@ -1,3 +1,7 @@
+body{
+
+    background-color: #e1e1f2;
+}
 
 h3
 {
@@ -17,7 +21,14 @@ h3
     padding-right: 20px;
 }
 
+
+nav {
+    margin-bottom: 0px;
+}
+
 /* footer */
+
+
 
 nav ul li {
     display:inline-block;
@@ -81,3 +92,4 @@ footer{
 .panel{
     margin-top: 100px;
 }
+
