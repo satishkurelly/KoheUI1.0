@@ -39,7 +39,7 @@ app.controller('LoginCtrl', function($scope, $http, $location, authentication) {
 
         $http({
             method: 'GET',
-            url: 'http://localhost:8086/Project/Rest/timeportal/login?username=' +username
+            url: 'http://localhost:8080/Project/Rest/timeportal/login?username=' +username
         }).then(function successCallback(response) {
             var Results = angular.fromJson(response.data)[0];
 
@@ -51,12 +51,14 @@ app.controller('LoginCtrl', function($scope, $http, $location, authentication) {
 
                 console.log('successful')
                 authentication.isAuthenticated = true;
-                authentication.user = { name: $scope.username };
+                authentication.user = {name: $scope.username};
                 $location.url("/Dashboard");
-            } else {
-                $scope.loginError = "Invalid username/password combination";
+            }
+            else {
+                $scope.loginError = "Invalid username/password";
                 console.log('Login failed..');
-            };
+            }
+            ;
 
         }, function errorCallback(response) {
 

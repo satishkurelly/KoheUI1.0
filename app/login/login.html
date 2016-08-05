@@ -11,30 +11,30 @@
         <div class="row">
             <img src = "../Styles/Images/logo.png">
             <div class = "row">
-                <h2 class = "text-center">Time Sheet Portal</h2></div>
+                <h2 class = "text-center" id = "loginh2">Time Sheet Portal</h2></div>
 
             <form method = "post" name="form" ng-submit="login(username,password)" role="form" class="ng-scope ng-pristine ng-valid">
                 <fieldset class="clearfix">
                     <div class="form-group">
-                        <span class="fontawesome-user"></span>
-                        <p><input type="text" name="username" value="Username" id="username" class="form-control" ng-model="username" onBlur="if(this.value == '') this.value = 'username'" onFocus="if(this.value == 'username') this.value = ''" required /></p>
-                        <!---<span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>-->
+                        <div class = "loginspan"><span class="fontawesome-user"></span></div>
+                        <input type="text" name="username" placeholder="Username"  id="username" class="form-control" ng-model="username" onBlur="if(this.value == '') this.value = ''" onFocus="if(this.value == '') this.value = ''" required />
+                        <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block text-center loginreq" >Username is required</span>
                     </div>
                     <div class="form-group">
-                        <span class="fontawesome-lock"></span>
-                        <p><input type="password" name="password" value="Password" id="password" class="form-control" ng-model="password" onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''"  required /></p>
-                        <!---<p><span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span></p>-->
+                        <div class = "loginspan"><span class="fontawesome-lock"></span></div>
+                        <p><input type="password" name="password" id="password" class="form-control" ng-model="password" placeholder="Password"  onBlur="if(this.value == '') this.value = ''" onFocus="if(this.value == '') this.value = ''"  required /></p>
+                        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block text-center loginreq">Password is required</span>
                     </div>
 
                     {{loginError}}  {{loggedUser}}
 
                     <div class="form-actions">
                         <input type="submit" ng-click="" value = "Login">
-
+                        <p class = "text-center"><a href="#resetPwd" >Forgot Password?</a></p>
                     </div>
 
                 </fieldset>
-                <p class = "text-center"><a href="#resetPwd" class="btn btn-link ">Forgot Password</a></p>
+
 
             </form>
 
